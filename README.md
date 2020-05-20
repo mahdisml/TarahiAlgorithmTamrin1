@@ -1,5 +1,7 @@
 # تمرین 1 طراحی الگوریتم
 
+Calculate BinomialCoefficient with Kotlin
+
 روش A1 : محاسبه با روش مستقیم (محاسبه فاکتوریل با حلقه)
 
 
