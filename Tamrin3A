@@ -1,0 +1,32 @@
+import kotlin.math.min
+
+fun main (){
+    for (k in 0..4) {
+        println("k = $k : "+findShortestPathWithLimit(mutableListOf(
+                mutableListOf(0, null, -2, null),
+                mutableListOf(4, 0, 3, null),
+                mutableListOf(null, null, 0, 2),
+                mutableListOf(null, -1, null, 0)
+        ), k))
+    }
+}
+fun findShortestPathWithLimit (graph : MutableList<MutableList<Int?>> , m : Int ) : MutableList<MutableList<Int?>> {
+    val result : MutableList<MutableList<Int?>> = graph
+    result.map { it.replaceAll { i -> i ?: 99999999 } }
+    for (k in 0 until m){
+        if (k <= result.lastIndex) {
+            for (i in 0..result.lastIndex) {
+                for (j in 0..result.lastIndex) {
+                    result[i][j] = min(result[i][j]!!, result[i][k]!! + result[k][j]!!)
+                }
+            }
+        }
+    }
+    result.map { it.replaceAll { i ->
+        if (i == null || i > 999999)
+            null
+        else
+            i
+    } }
+    return result
+}
